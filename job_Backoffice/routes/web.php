@@ -12,11 +12,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/companies',[CompanyController::class, 'index'])->name('company.index');
-    Route::get('/jobApplications',[JobApplicationController::class, 'index'])->name('application.index');
-    Route::get('/jobVacancies',[JobVacancyController::class, 'index'])->name('job-vacancy.index');
-    Route::get('/jobCategories',[JobCategoryController::class, 'index'])->name('category.index');
-    Route::get('/users',[UserController::class, 'index'])->name('user.index');
+
+    Route::resource('/companies', CompanyController::class);
+    // Route::get('/companies',[CompanyController::class, 'index'])->name('company.index');
+
+    Route::resource('/job-applications', JobApplicationController::class);
+    // Route::get('/jobApplications',[JobApplicationController::class, 'index'])->name('application.index');
+
+    Route::resource('/job-vacancies', JobVacancyController::class);
+    // Route::get('/jobVacancies',[JobVacancyController::class, 'index'])->name('job-vacancy.index');
+
+    Route::resource('/job-categories', JobCategoryController::class);
+    // Route::get('/jobCategories',[JobCategoryController::class, 'index'])->name('category.index');
+
+    Route::resource('/users', UserController::class);
+    // Route::get('/users',[UserController::class, 'index'])->name('user.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
