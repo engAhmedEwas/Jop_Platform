@@ -34,7 +34,7 @@
         </table>
 
         <div class="mt-5">
-            {{ $categories->links() }}
+            {{ $categories->links }}
         </div>
     </div>
 </x-app-layout>
