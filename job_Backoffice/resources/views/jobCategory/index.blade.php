@@ -5,7 +5,17 @@
         </h2>
     </x-slot>
 
-    <div class="p-6 overflow-x-auto">
+
+
+    <div class="p-3 overflow-x-auto">
+
+    <x-notification />
+
+    <div class="flex items-center justify-end">
+        <a href="{{ route('job-categories.create') }}" class="px-2 py-4 mt-3 text-white bg-blue-500 border border-blue-500 hover:bg-blue-700 rounded-xl">Create New Category</a>
+    </div>
+
+
         <table class="min-w-full mt-4 bg-white divide-y divide-gray-200 rounded-lg shadow">
             <thead>
                 <tr>
@@ -34,7 +44,7 @@
         </table>
 
         <div class="mt-5">
-            {{ $categories->links }}
+            {{ $categories->links() }}
         </div>
     </div>
 </x-app-layout>
