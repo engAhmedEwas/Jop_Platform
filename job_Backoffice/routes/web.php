@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/jobVacancies',[JobVacancyController::class, 'index'])->name('job-vacancy.index');
 
     Route::resource('/job-categories', JobCategoryController::class);
-    // Route::get('/jobCategories',[JobCategoryController::class, 'index'])->name('category.index');
+    Route::PUT('/job-categories/{id}/restore',[JobCategoryController::class, 'restore'])->name('job-categories.restore');
 
     Route::resource('/users', UserController::class);
     // Route::get('/users',[UserController::class, 'index'])->name('user.index');
