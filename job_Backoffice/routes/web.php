@@ -14,7 +14,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/companies', CompanyController::class);
-    // Route::get('/companies',[CompanyController::class, 'index'])->name('company.index');
+    Route::get('/companies/{id}/restore',[CompanyController::class, 'restore'])->name('companies.restore');
 
     Route::resource('/job-applications', JobApplicationController::class);
     // Route::get('/jobApplications',[JobApplicationController::class, 'index'])->name('application.index');
