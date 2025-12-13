@@ -23,6 +23,7 @@ class Company extends Model
         'industry',
         'website',
         'ownerId',
+        'company_id',
     ];
 
     protected $dates =[
@@ -40,7 +41,11 @@ class Company extends Model
         return $this->belongsTo(User::class, 'ownerId', 'id');
     }
 
-    public function jobVacancy(){
-        return $this->hasMany(JobVacancy::class, 'companyId', 'id');
+    public function jobVacancies(){
+        return $this->hasMany(JobVacancy::class, 'company_id', 'id');
+    }
+
+    public function jobApplications(){
+        return $this->hasManyThrough(JobApplication::class, JobVacancy::class, 'company_id', 'jobVacancy_id' , 'id');
     }
 }

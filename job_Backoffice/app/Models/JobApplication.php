@@ -23,9 +23,9 @@ class JobApplication extends Model
         'status',
         'aiGeneratedScore',
         'aiGeneratedFeedback',
-        'jobVacancyId',
+        'jobVacancy_id',
         'resumeId',
-        'userId',
+        'user_id',
     ];
 
     protected $dates =[
@@ -44,10 +44,10 @@ class JobApplication extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class, 'userId', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function jobVacancy(){
-        return $this->belongsTo(JobVacancy::class, 'jobVacancyId', 'id');
+        return $this->belongsTo(JobVacancy::class, 'jobVacancy_id', 'id');
     }
 }

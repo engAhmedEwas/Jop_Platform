@@ -47,7 +47,10 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $company = Company::findOrFail($id);
+
+        // $applications = JobApplication::with('user')->whereIn('jobVacancyId', $company->jobVacancies->pluck('id'))->get();
+        return view('company.show', compact('company'));
     }
 
     /**
