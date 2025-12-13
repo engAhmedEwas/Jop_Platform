@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Slides — Job Portal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Title & Problem</h2>
+          <ul>
+            <li>
+              Project name, one-line problem statement (hiring friction / job
+              discovery).
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Solution Overview</h2>
+          <ul>
+            <li>
+              Public job portal + Backoffice for employers; quick summary of
+              features.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Architecture (visual)</h2>
+          <p>See the architecture diagram:</p>
+          <p>
+            <img
+              src="images/architecture.svg"
+              alt="architecture"
+              style="max-width: 80%; height: auto"
+            />
+          </p>
+        </section>
+        <section>
+          <h2>Data model (ERD)</h2>
+          <p>
+            Highlight main entities: <code>User</code>, <code>Company</code>,
+            <code>JobVacancy</code>, <code>JobApplication</code>,
+            <code>Resume</code>, <code>JobCategory</code>.
+          </p>
+          <p>
+            <img
+              src="images/erd.svg"
+              alt="erd"
+              style="max-width: 80%; height: auto"
+            />
+          </p>
+        </section>
+        <section>
+          <h2>Demo plan</h2>
+          <ul>
+            <li>Register, post job, apply, review in backoffice.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Deployment & next steps</h2>
+          <ul>
+            <li>
+              Deployment checklist, scaling considerations, missing items or
+              suggestions.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Q&amp;A / Contact</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        plugins: [],
+      });
+    </script>
+  </body>
+</html>

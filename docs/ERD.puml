@@ -1,0 +1,51 @@
+@startuml
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+
+Table(User, "users") {
+  * id : bigint
+  --
+  name : string
+  email : string
+}
+
+Table(Company, "companies") {
+  * id : bigint
+  name : string
+  owner_id : bigint
+}
+
+Table(JobCategory, "job_categories") {
+  * id : bigint
+  name : string
+}
+
+Table(JobVacancy, "job_vacancies") {
+  * id : bigint
+  company_id : bigint
+  category_id : bigint
+  title : string
+  description : text
+}
+
+Table(JobApplication, "job_applications") {
+  * id : bigint
+  job_vacancy_id : bigint
+  user_id : bigint
+  resume_id : bigint
+  status : string
+}
+
+Table(Resume, "resumes") {
+  * id : bigint
+  user_id : bigint
+  file_path : string
+}
+
+User "1"--"*" JobApplication
+User "1"--"*" Resume
+Company "1"--"*" JobVacancy
+JobCategory "1"--"*" JobVacancy
+JobVacancy "1"--"*" JobApplication
+JobApplication "*"--"1" Resume
+
+@enduml
