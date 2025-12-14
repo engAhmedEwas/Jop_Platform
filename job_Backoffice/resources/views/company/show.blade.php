@@ -17,13 +17,14 @@
             <div>
                 <h3 class="text-xl font-bold">Company Information</h3>
                 <br>
+                <p><strong>Owner: </strong>{{ $company->owner->name }}</p>
                 <p><strong>Address: </strong>{{ $company->address }}</p>
                 <p><strong>Industry: </strong>{{ $company->industry }}</p>
                 <p><strong>Website: </strong><a class="text-blue-500 underline hover:text-blue-800" href="{{ $company->website }}">{{ $company->website }}</a></p>
             </div>
 
             <div class="flex justify-end mb-6 space-x-3">
-                <a href="{{ route('companies.edit', $company->id) }}"
+                <a href="{{ route('companies.edit', ['company' => $company->id, 'redirectToList' => 'false']) }}"
                     class="px-2 text-white bg-blue-500 border border-blue-500 rounded hover:bg-blue-700 by-2">
                         ✍️ Edit</a>
                 <form action=" {{route('companies.destroy', $company->id)}} " method="post" class="inline-block">
@@ -38,10 +39,10 @@
             <div class="mb-6">
                 <ul class="flex space-x-3">
                     <li>
-                        <a href="{{ route('companies.show', ['company' => $company->id, 'tab' => 'jobs']) }}" class="{{ request('tab') == 'jobs' ? 'text-gray-500 hover:text-gray-800 border-b-4 border-blue-500 transition' : 'text-gray-500 hover:text-gray-800' }}">Jobs</a>
+                        <a href="{{ route('companies.show', ['company' => $company->id, 'tab' => 'jobs']) }}" class="{{ request('tab') == 'jobs' ? 'text-gray-500 hover:text-gray-800 border-b-4 border-blue-500 transition pb-1' : 'text-gray-500 hover:text-gray-800' }}">Jobs</a>
                     </li>
                     <li>
-                        <a href="{{ route('companies.show', ['company' => $company->id, 'tab' => 'application']) }}" class="{{ request('tab') == 'application' ? 'text-gray-500 hover:text-gray-800 border-b-4 border-blue-500': ' text-gray-500 hover:text-gray-800 transition' }}">Applications</a>
+                        <a href="{{ route('companies.show', ['company' => $company->id, 'tab' => 'application']) }}" class="{{ request('tab') == 'application' ? 'text-gray-500 hover:text-gray-800 border-b-4 border-blue-500 pb-1': ' text-gray-500 hover:text-gray-800 transition' }}">Applications</a>
                     </li>
                 </ul>
             </div>

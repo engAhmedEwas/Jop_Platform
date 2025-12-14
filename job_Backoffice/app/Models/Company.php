@@ -22,7 +22,7 @@ class Company extends Model
         'address',
         'industry',
         'website',
-        'ownerId',
+        'owner_id',
         'company_id',
     ];
 
@@ -38,7 +38,7 @@ class Company extends Model
     }
 
     public function owner(){
-        return $this->belongsTo(User::class, 'ownerId', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 
     public function jobVacancies(){

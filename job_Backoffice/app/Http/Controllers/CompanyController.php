@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\User;
 use App\Http\Requests\CompanyCreateRequest;
-use App\Http\Requests\JobCategoryUpdateRequest;
+use App\Http\Requests\CompanyUpdateRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 class CompanyController extends Controller
 {
+    public $industries = ['Technology', 'Finance', 'Healthcare', 'Education', 'Manufacturing', 'Retail', 'Other'];
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +34,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        $industries = $this->industries;
+        return view('company.create', compact('industries'));
     }
 
     /**
@@ -38,8 +44,26 @@ class CompanyController extends Controller
     public function store(CompanyCreateRequest $request)
     {
         $validated = $request->validated();
-        Company::create($validated);
-        return redirect()->route('company.index')->with("success", "Job Category Created Successfully");
+        $owner = User::create([
+            'name'=> $validated['owner_name'],
+            'email' => $validated['owner_email'],
+            'password' => Hash::make($validated['owner_password']),
+            'role' => 'company-owner',
+        ]);
+
+        if(!$owner){
+            return redirect()->route('companies.create')->with("success", "Owner Created Failed");
+        }
+
+        Company::create([
+            'name'=> $validated['name'],
+            'address' => $validated['address'],
+            'industry' => $validated['industry'],
+            'website' => $validated['website'],
+            'owner_id' => $owner->id,
+        ]);
+        // Company::create($validated);
+        return redirect()->route('companies.index')->with("success", "Company Created Successfully");
     }
 
     /**
@@ -59,7 +83,8 @@ class CompanyController extends Controller
     public function edit(string $id)
     {
         $company = Company::findOrFail($id);
-        return view('company.edit', compact('company'));
+        $industries = $this->industries;
+        return view('company.edit', compact('company', 'industries'));
     }
 
     /**
@@ -69,8 +94,27 @@ class CompanyController extends Controller
     {
         $validated = $request->validated();
         $company = Company::findOrFail($id);
-        $company->update($validated);
-        return redirect()->route('company.index')->with("success", "Job Category Updated Successfully");
+
+        $company->update([
+            'name' => $validated['name'],
+            'address' => $validated['address'],
+            'industry' => $validated['industry'],
+            'website' => $validated['website'],
+        ]);
+
+        $ownerDate = [];
+        $ownerDate['name'] = $validated['owner_name'];
+
+        if($validated['owner_password']){
+            $ownerDate['password'] = Hash::make($validated['owner_password']);
+        }
+
+        $company->owner->update($ownerDate);
+
+        if($request->query('redirectToList') == 'false'){
+            return redirect()->route('companies.show', $id )->with("success", "Company Updated Successfully");
+        }
+        return redirect()->route('companies.index')->with("success", "Company Updated Successfully");
     }
 
     /**
@@ -80,7 +124,7 @@ class CompanyController extends Controller
     {
         $company = Company::findOrFail($id);
         $company->delete();
-        return redirect()->route('company.index')->with("success", "Job Category Archived Successfully");
+        return redirect()->route('companies.index')->with("success", "Company Archived Successfully");
     }
 
     /**
@@ -90,6 +134,6 @@ class CompanyController extends Controller
     {
         $company = Company::withTrashed()->findOrFail($id);
         $company->restore();
-        return redirect()->route('company.index', ['archived' => 'true'])->with("success", "Job Category Restored Successfully");
+        return redirect()->route('companies.index', ['archived' => 'true'])->with("success", "Company Restored Successfully");
     }
 }
