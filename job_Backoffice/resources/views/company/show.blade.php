@@ -83,7 +83,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($company->jobApplications as $application)
+                            @forelse($company->jobApplications as $application)
                                 <tr>
                                     <td class="px-4 py-2"> {{ $application->user?->name }} </td>
                                     <td class="px-4 py-2"> {{ $application->jobVacancy?->title }} </td>
@@ -92,8 +92,8 @@
                                         <a href="{{ route('job-vacancies.show', $job->id) }}" class="text-blue-500 underline hover:text-blue-800">View</a>
                                     </td>
                                 </tr>
-
-                            @endforeach
+                                @empty
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

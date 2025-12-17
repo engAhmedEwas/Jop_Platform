@@ -28,7 +28,7 @@ class Resume extends Model
         'experience',
         'education',
         'skills',
-        'userId',
+        'user_id',
     ];
 
     protected $dates =[
@@ -43,11 +43,11 @@ class Resume extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class, 'userId', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 
     public function jobApplication(){
-        return $this->hasMany(JobApplication::class, 'resumeId', 'id');
+        return $this->hasMany(JobApplication::class, 'resume_id', 'id');
     }
 }

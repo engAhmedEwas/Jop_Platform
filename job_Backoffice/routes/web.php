@@ -17,9 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::PUT('/companies/{id}/restore',[CompanyController::class, 'restore'])->name('companies.restore');
 
     Route::resource('/job-applications', JobApplicationController::class);
-    // Route::get('/jobApplications',[JobApplicationController::class, 'index'])->name('application.index');
+    Route::PUT('/jobApplications/{id}/restore',[JobApplicationController::class, 'restore'])->name('job-applications.restore');
 
     Route::resource('/job-vacancies', JobVacancyController::class);
+    Route::PUT('/jobVacancies/{id}/restore',[JobVacancyController::class, 'restore'])->name('job-vacancies.restore');
     // Route::get('/jobVacancies',[JobVacancyController::class, 'index'])->name('job-vacancy.index');
 
     Route::resource('/job-categories', JobCategoryController::class);

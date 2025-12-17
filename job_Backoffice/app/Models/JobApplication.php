@@ -5,9 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\User;
-use App\Models\Resume;
-use App\Models\JobVacancy;
 
 class JobApplication extends Model
 {
@@ -24,7 +21,7 @@ class JobApplication extends Model
         'aiGeneratedScore',
         'aiGeneratedFeedback',
         'jobVacancy_id',
-        'resumeId',
+        'resume_id',
         'user_id',
     ];
 
@@ -40,7 +37,7 @@ class JobApplication extends Model
     }
 
     public function resume(){
-        return $this->belongsTo(Resume::class, 'resumeId', 'id');
+        return $this->belongsTo(Resume::class, 'resume_id', 'id');
     }
 
     public function user(){
