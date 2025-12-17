@@ -61,7 +61,7 @@
                 <!-- company owner -->
                 <div class="p-6 mb-4 border border-gray-100 rounded-lg shadow-sm bg-gray-50">
                     <h3 class="text-lg font-bold">Company Owner</h3>
-                    <span>Enter The Company Owner</span>
+                    <span>Edit The Company Owner</span>
 
                     <div class="mt-3 mb-2">
                         <label for="owner_name" class="block text-sm font-medium text-gray-700">Owner Name</label>

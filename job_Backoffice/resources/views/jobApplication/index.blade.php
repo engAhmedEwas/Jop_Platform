@@ -53,10 +53,9 @@
                         <!-- <td class="px-6 py-4 text-gray-800"> {{ $application->user->name }} </td> -->
                         <td class="px-6 py-4 text-gray-500"> {{ $application?->jobVacancy?->company?->name ?? "N/A"}} </td>
                         <td class="px-6 py-4 text-gray-500"> {{ $application?->jobVacancy?->title ?? "N/A" }} </td>
-                        <td class="px-6 py-4 ($application->status == 'accepted') text-green-500
-                            @elseif($application->status == 'rejected') text-red-500
-                            @else ($application->status == 'pending') text-purple-500
-                            @endif"> {{ $application?->status ?? "N/A" }}</td>
+                        <td class=" @if($application->status == 'accepted') text-green-500 
+                                    @elseif($application->status == 'rejected') text-red-500 
+                                    @elseif($application->status == 'pending') text-purple-500 @endif"> {{ $application ?->status ?? "N/A" }}</td>
                         <td>
                             <div class="flex space-x-4">
 
