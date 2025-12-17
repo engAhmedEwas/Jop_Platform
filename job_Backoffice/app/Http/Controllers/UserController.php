@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function restore(string $id)
     {
-        $user = Company::withTrashed()->findOrFail($id);
+        $user = User::withTrashed()->findOrFail($id);
         $user->restore();
         return redirect()->route('users.index')->with("success", "User Restored Successfully");
     }
